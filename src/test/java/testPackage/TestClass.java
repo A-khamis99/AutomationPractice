@@ -8,5 +8,6 @@ public class TestClass {
     @Test
     public void test() {
         WebDriver driver = new EdgeDriver();
+        driver.get("https://www.example.com");
     }
 }
