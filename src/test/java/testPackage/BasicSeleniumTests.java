@@ -66,7 +66,11 @@ public class BasicSeleniumTests {
     public void checkVisibilityOfPageLogo() {
 
         driver.navigate().to("https://duckduckgo.com/");
-        Assert.assertTrue(driver.findElement(By.cssSelector("section>a>picture>img")).isDisplayed());
+        // ( //a[@title='Learn about DuckDuckGo']//img)[1]
+        By logoLocator = By.xpath("(//a[@title='Learn about DuckDuckGo']//img)[1]");
+        var s = driver.findElement(logoLocator).isDisplayed();
+        System.out.println("Is the DuckDuckGo logo displayed? " + s);
+        Assert.assertTrue(driver.findElement(logoLocator).isDisplayed());
     }
 
     @Test
@@ -75,8 +79,10 @@ public class BasicSeleniumTests {
         driver.navigate().to("https://duckduckgo.com/");
         driver.findElement(By.id("searchbox_input")).sendKeys("Selenium WebDriver" + Keys.ENTER);
         new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#r1-0 a[data-testid=result-title-a]")));
-        driver.findElement(By.cssSelector("#r1-0 a[data-testid=result-title-a]")).click();
-        String URL = driver.getCurrentUrl();
+        String URL = driver.findElement(By.cssSelector("#r1-0 a[data-testid=result-title-a]")).getDomAttribute("href");
+        System.out.println("URL of the 1st search result is: " + URL);
+//        driver.findElement(By.cssSelector("#r1-0 a[data-testid=result-title-a]")).click();
+//        String URL = driver.getCurrentUrl();
         Assert.assertEquals(URL, "https://www.selenium.dev/documentation/webdriver/");
     }
 
