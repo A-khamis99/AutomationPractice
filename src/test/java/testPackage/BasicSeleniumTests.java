@@ -67,7 +67,7 @@ public class BasicSeleniumTests {
 
         driver.navigate().to("https://duckduckgo.com/");
         // ( //a[@title='Learn about DuckDuckGo']//img)[1]
-        By logoLocator = By.xpath("(//a[@title='Learn about DuckDuckGo']//img)[1]");
+        By logoLocator = By.xpath("(//a[@title='Learn about DuckDuckGo']//img)[2]");
         var s = driver.findElement(logoLocator).isDisplayed();
         System.out.println("Is the DuckDuckGo logo displayed? " + s);
         Assert.assertTrue(driver.findElement(logoLocator).isDisplayed());
@@ -77,7 +77,7 @@ public class BasicSeleniumTests {
     public void validateSearchResultsForSelenuim() {
 
         driver.navigate().to("https://duckduckgo.com/");
-        driver.findElement(By.id("searchbox_input")).sendKeys("Selenium WebDriver" + Keys.ENTER);
+        driver.findElement(By.id("searchbox_input")).sendKeys("Selenium WebDriver", Keys.ENTER);
         new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#r1-0 a[data-testid=result-title-a]")));
         String URL = driver.findElement(By.cssSelector("#r1-0 a[data-testid=result-title-a]")).getDomAttribute("href");
         System.out.println("URL of the 1st search result is: " + URL);
@@ -90,7 +90,7 @@ public class BasicSeleniumTests {
     public void validateSearchResultsForTestNG() {
 
         driver.navigate().to("https://duckduckgo.com/");
-        driver.findElement(By.id("searchbox_input")).sendKeys("TestNG" + Keys.ENTER);
+        driver.findElement(By.id("searchbox_input")).sendKeys("TestNG", Keys.ENTER);
         new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#r1-0 a[data-testid=result-title-a]")));
         String title = driver.findElement(By.cssSelector("#r1-3 a[data-testid=result-title-a]")).getText();
         System.out.println("Title of the 4th search result is: " + title);
@@ -102,7 +102,7 @@ public class BasicSeleniumTests {
     public void validateSearchResultsForCucumberIO() {
 
         driver.navigate().to("https://duckduckgo.com/");
-        driver.findElement(By.id("searchbox_input")).sendKeys("Cucumber IO" + Keys.ENTER);
+        driver.findElement(By.id("searchbox_input")).sendKeys("Cucumber IO", Keys.ENTER);
         new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#r1-0 a[data-testid=result-title-a]")));
         driver.findElement(By.cssSelector("#r1-1 a[data-testid=result-title-a]")).click();
         String URL = driver.getCurrentUrl();
