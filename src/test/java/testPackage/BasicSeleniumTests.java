@@ -2,51 +2,16 @@ package testPackage;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import templates.TestCase;
 
 import java.time.Duration;
 
-public class BasicSeleniumTests {
+public class BasicSeleniumTests extends TestCase {
 
-    WebDriver driver;
-
-    @Test
-
-
-    public static ChromeOptions getOptimizedOptions() {
-        ChromeOptions options = new ChromeOptions();
-
-        // Essential execution mode
-//        options.addArguments("--headless");
-
-        // CI/CD-specific stability
-        options.addArguments("--no-sandbox");
-        options.addArguments("--disable-dev-shm-usage");
-
-        // Performance & consistency
-        options.addArguments("--disable-extensions");
-        options.addArguments("--window-size=1920,1080");
-
-        return options;
-    }
-
-    @BeforeMethod
-    public void setUp() {
-        driver = new ChromeDriver(getOptimizedOptions());
-    }
-
-    @AfterMethod
-    public void tearDown() {
-        driver.quit();
-    }
 
     @Test
     public void test() {
@@ -57,7 +22,7 @@ public class BasicSeleniumTests {
     @Test
     public void checkPageTitle() {
 
-        driver.navigate().to("//duckduckgo.com");
+        driver.navigate().to("https://duckduckgo.com");
         String pageTitle = driver.getTitle();
         Assert.assertEquals(pageTitle, "Google");
     }
@@ -126,6 +91,8 @@ public class BasicSeleniumTests {
         String companyName = driver.findElement(By.cssSelector("#customers > tbody > tr:nth-child(4)> td:nth-child(1)")).getText();
         String companyCountry = driver.findElement(By.cssSelector("#customers > tbody > tr:nth-child(4)> td:nth-child(3)")).getText();
         Assert.assertTrue(companyName.equals("Ernst Handel") && companyCountry.equals("Austria"));
+        //    (//td[text()='Ernst Handel']/following-sibling::td)[2])
+
     }
 
     @Test
