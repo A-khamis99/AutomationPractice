@@ -1,6 +1,7 @@
 package engine;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.Wait;
 import org.testng.Assert;
@@ -44,5 +45,23 @@ public class ActionBot {
         });
     }
 
+    public void performSearch(By locator, String query) {
+        wait.until(driver -> {
+            System.out.println("Performing search for: " + query);
+            driver.findElement(locator).sendKeys(query + Keys.ENTER);
+            System.out.println("Search performed for: " + query);
+            return true;
+        });
+    }
+
+    public void validateFirstSearchResultURL(By locator, String expectedURL) {
+        wait.until(driver -> {
+            System.out.println("Validating first search result URL...");
+            String actualURL = driver.findElement(locator).getDomAttribute("href");
+            Assert.assertEquals(actualURL, expectedURL, "First search result URL does not match. Expected: " + expectedURL + ", but got: " + actualURL);
+            System.out.println("First search result URL validation passed: " + actualURL);
+            return true;
+        });
+    }
 
 }

@@ -1,7 +1,7 @@
 package testPackage;
 
-import engine.DuckDuckGo;
 import org.testng.annotations.Test;
+import pages.DuckDuckGoHome;
 import templates.TestCase;
 
 public class DuckDuckGoTests extends TestCase {
@@ -13,15 +13,31 @@ public class DuckDuckGoTests extends TestCase {
     @Test
     public void validatePageTitle() {
         // Implement the logic to validate the page title of DuckDuckGo.
-        new DuckDuckGo(actionBot).navigateToDuckDuckGo()
+        new DuckDuckGoHome(actionBot).navigateToDuckDuckGo()
                 .validatePageTitle("DuckDuckGo - Protection. Privacy. Peace of mind.");
     }
 
     @Test
     public void validateLogoVisibility() {
         // Implement the logic to validate the visibility of the DuckDuckGo logo.
-        new DuckDuckGo(actionBot).navigateToDuckDuckGo()
+        new DuckDuckGoHome(actionBot).navigateToDuckDuckGo()
                 .ValidateLogoVisibility();
+    }
+
+    @Test
+    public void validateSearchResultsForSelenium() {
+        // Implement the logic to validate the search results for "Selenium WebDriver".
+        new DuckDuckGoHome(actionBot).navigateToDuckDuckGo()
+                .performSearch("Selenium WebDriver")
+                .validateFirstSearchResultURL("https://www.selenium.dev/documentation/webdriver/");
+    }
+
+    @Test
+    public void validateSearchResultsForTestNG() {
+        // Implement the logic to validate the search results for "TestNG".
+        new DuckDuckGoHome(actionBot).navigateToDuckDuckGo()
+                .performSearch("Cucumber IO")
+                .validateSecondSearchResultURL("https://www.linkedin.com");
     }
 
 
