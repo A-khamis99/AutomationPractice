@@ -5,8 +5,8 @@ import org.openqa.selenium.ElementNotInteractableException;
 import org.openqa.selenium.NotFoundException;
 import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
 import org.testng.annotations.AfterMethod;
@@ -14,7 +14,7 @@ import org.testng.annotations.BeforeMethod;
 
 import java.time.Duration;
 
-public class TestCase {
+public class FireFoxTestCase {
     // This class serves as a template for creating new test cases.
     // You can add common setup, teardown, and utility methods here that can be reused across multiple test cases.
 
@@ -24,8 +24,8 @@ public class TestCase {
     public ActionBot actionBot;
 
 
-    public static ChromeOptions getOptimizedOptions() {
-        ChromeOptions options = new ChromeOptions();
+    public static FirefoxOptions getOptimizedOptions() {
+        FirefoxOptions options = new FirefoxOptions();
 
         // Essential execution mode
 //        options.addArguments("--headless");
@@ -44,10 +44,11 @@ public class TestCase {
     @BeforeMethod
     public void setUp() {
         // Common setup code for all test cases can be added here.
-        driver = new ChromeDriver(getOptimizedOptions());
+        driver = new FirefoxDriver(getOptimizedOptions());
         Wait<WebDriver> wait = new FluentWait<>(driver)
                 .pollingEvery(Duration.ofMillis(250))
                 .withTimeout(Duration.ofSeconds(5))
+                .ignoring(AssertionError.class)
                 .ignoring(NotFoundException.class)
                 .ignoring(StaleElementReferenceException.class)
                 .ignoring(ElementNotInteractableException.class);

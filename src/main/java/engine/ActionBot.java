@@ -54,12 +54,25 @@ public class ActionBot {
         });
     }
 
-    public void validateFirstSearchResultURL(By locator, String expectedURL) {
+    public void validateSearchResultURL(By locator, String expectedURL) {
         wait.until(driver -> {
-            System.out.println("Validating first search result URL...");
+            System.out.println("Validating search result URL...");
             String actualURL = driver.findElement(locator).getDomAttribute("href");
-            Assert.assertEquals(actualURL, expectedURL, "First search result URL does not match. Expected: " + expectedURL + ", but got: " + actualURL);
-            System.out.println("First search result URL validation passed: " + actualURL);
+            Assert.assertEquals(actualURL, expectedURL, "Search result URL does not match. Expected: " + expectedURL + ", but got: " + actualURL);
+            System.out.println("Search result URL validation passed: " + actualURL);
+            return true;
+        });
+    }
+
+
+    public void validateSearchResultText(By locator, String expectedText) {
+
+        wait.until(driver -> {
+
+            System.out.println("Validating search result text...");
+            String actualText = driver.findElement(locator).getText();
+            Assert.assertEquals(actualText, expectedText, "Search result text does not match. Expected: " + expectedText + ", but got: " + actualText);
+            System.out.println("Search result text validation passed: " + actualText);
             return true;
         });
     }

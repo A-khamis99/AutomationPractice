@@ -1,4 +1,4 @@
-package testPackage;
+package testPackage.chromeTests;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
@@ -6,11 +6,11 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import templates.TestCase;
+import templates.ChromeTestCase;
 
 import java.time.Duration;
 
-public class BasicSeleniumTests extends TestCase {
+public class BasicSeleniumTests extends ChromeTestCase {
 
 
     @Test

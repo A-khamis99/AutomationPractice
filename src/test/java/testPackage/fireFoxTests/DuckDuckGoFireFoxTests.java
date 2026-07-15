@@ -1,10 +1,10 @@
-package testPackage;
+package testPackage.fireFoxTests;
 
 import org.testng.annotations.Test;
 import pages.DuckDuckGoHome;
-import templates.TestCase;
+import templates.FireFoxTestCase;
 
-public class DuckDuckGoTests extends TestCase {
+public class DuckDuckGoFireFoxTests extends FireFoxTestCase {
 
     // This class serves as a page object model for the DuckDuckGo search engine.
     // You can add methods to interact with the DuckDuckGo page, such as performing searches
@@ -33,11 +33,20 @@ public class DuckDuckGoTests extends TestCase {
     }
 
     @Test
-    public void validateSearchResultsForTestNG() {
+    public void validateSearchResultsForCucumberIo() {
         // Implement the logic to validate the search results for "TestNG".
         new DuckDuckGoHome(actionBot).navigateToDuckDuckGo()
                 .performSearch("Cucumber IO")
                 .validateSecondSearchResultURL("https://www.linkedin.com");
+    }
+
+    @Test
+    public void validateSearchResultsForTestNG() {
+
+        new DuckDuckGoHome(actionBot)
+                .navigateToDuckDuckGo()
+                .performSearch("TestNG")
+                .validateFourthSearchResultText("TestNG Tutorial");
     }
 
 
